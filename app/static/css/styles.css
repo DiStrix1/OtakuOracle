@@ -1,0 +1,724 @@
+/* Main Styles for Manga Recommender */
+:root {
+  --primary-color: #6200ea;
+  --primary-light: #9d46ff;
+  --primary-dark: #0a00b6;
+  --secondary-color: #ff4081;
+  --secondary-light: #ff79b0;
+  --secondary-dark: #c60055;
+  --text-on-primary: #ffffff;
+  --text-on-secondary: #ffffff;
+  --background-color: #f5f7fa;
+  --card-color: #ffffff;
+  --text-primary: #212121;
+  --text-secondary: #757575;
+  --border-color: #e0e0e0;
+  --success-color: #00c853;
+  --error-color: #d50000;
+  --warning-color: #ffd600;
+  --info-color: #2196f3;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.3s;
+  --border-radius: 8px;
+  --font-family: 'Poppins', sans-serif;
+}
+
+/* Dark Mode Theme */
+.dark-theme {
+  --primary-color: #bb86fc;
+  --primary-light: #efc8ff;
+  --primary-dark: #8858c8;
+  --secondary-color: #03dac6;
+  --secondary-light: #66fff9;
+  --secondary-dark: #00a896;
+  --text-on-primary: #000000;
+  --text-on-secondary: #000000;
+  --background-color: #121212;
+  --card-color: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --border-color: #333333;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header Styles */
+.header {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: var(--text-on-primary);
+  padding: 2rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/static/images/pattern.svg');
+  background-size: cover;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  animation: pulse 2s infinite;
+}
+
+.logo h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.header p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--text-on-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform var(--transition-speed);
+}
+
+.theme-toggle:hover {
+  transform: rotate(30deg);
+}
+
+/* Search Section */
+.search-section {
+  background-color: var(--card-color);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  margin-top: -2rem;
+  position: relative;
+  z-index: 10;
+  box-shadow: var(--box-shadow);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.search-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.search-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+}
+
+.search-input input {
+  width: 100%;
+  padding: 15px 15px 15px 45px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+  background-color: var(--card-color);
+  color: var(--text-primary);
+}
+
+.search-input input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(98, 0, 234, 0.1);
+}
+
+.search-input i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+}
+
+.search-button {
+  padding: 15px 25px;
+  background-color: var(--primary-color);
+  color: var(--text-on-primary);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.search-button:active {
+  transform: translateY(0);
+}
+
+.search-button i {
+  font-size: 1.2rem;
+}
+
+/* Loading Indicator */
+.loading {
+  display: none;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(98, 0, 234, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading p {
+  margin-top: 1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Error Message */
+.error-message {
+  display: none;
+  background-color: rgba(213, 0, 0, 0.1);
+  border-left: 4px solid var(--error-color);
+  color: var(--error-color);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin: 1rem 0;
+  animation: slideIn var(--transition-speed);
+}
+
+/* No Results */
+.no-results {
+  display: none;
+  text-align: center;
+  margin: 3rem 0;
+  color: var(--text-secondary);
+  animation: fadeIn var(--transition-speed);
+}
+
+.no-results i {
+  font-size: 3rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.no-results h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Recommendations Section */
+.recommendations-section {
+  padding: 2rem 0;
+}
+
+.recommendations-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  position: relative;
+  display: inline-block;
+}
+
+.recommendations-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: var(--primary-color);
+  transition: width var(--transition-speed);
+}
+
+.recommendations-title:hover::after {
+  width: 100%;
+}
+
+.recommendations {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+  margin-top: 1rem;
+}
+
+/* Manga Card */
+.manga-card {
+  background-color: var(--card-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  position: relative;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.manga-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.manga-card-image {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.manga-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-speed);
+}
+
+.manga-card:hover .manga-card-image img {
+  transform: scale(1.05);
+}
+
+.manga-score-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--primary-color);
+  color: var(--text-on-primary);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  z-index: 1;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.manga-info {
+  padding: 1.5rem;
+}
+
+.manga-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 3rem;
+}
+
+.manga-genres, .manga-themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 0.8rem;
+}
+
+.genre-tag, .theme-tag {
+  padding: 3px 8px;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.genre-tag {
+  background-color: rgba(98, 0, 234, 0.1);
+  color: var(--primary-color);
+}
+
+.theme-tag {
+  background-color: rgba(255, 64, 129, 0.1);
+  color: var(--secondary-color);
+}
+
+/* Update Database Section */
+.update-section {
+  background-color: var(--card-color);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  margin: 3rem 0;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+}
+
+.update-section h2 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.update-section p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.update-button {
+  padding: 12px 25px;
+  background-color: var(--success-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.update-button:hover {
+  background-color: #00a844;
+  transform: translateY(-2px);
+}
+
+.update-button:active {
+  transform: translateY(0);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--primary-dark);
+  color: var(--text-on-primary);
+  padding: 3rem 0;
+  margin-top: 3rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.footer-logo {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-logo h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-links h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-links h3::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background-color: var(--secondary-color);
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Manga Details Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  overflow: auto;
+  animation: fadeIn 0.3s;
+}
+
+.modal-content {
+  background-color: var(--card-color);
+  margin: 5% auto;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  max-width: 800px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: slideIn 0.3s;
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color var(--transition-speed);
+}
+
+.close-modal:hover {
+  color: var(--error-color);
+}
+
+.modal-header {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-image {
+  width: 200px;
+  height: 300px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-title-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.modal-score {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: var(--text-on-primary);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.modal-details {
+  margin-bottom: 1.5rem;
+}
+
+.modal-details h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.modal-genres, .modal-themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .search-container {
+    flex-direction: column;
+  }
+  
+  .modal-header {
+    flex-direction: column;
+  }
+  
+  .modal-image {
+    width: 100%;
+    height: 250px;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+  }
+}
+
+/* Utility Classes */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+.text-center { text-align: center; }
+.text-primary { color: var(--primary-color); }
+.text-secondary { color: var(--secondary-color); }
+.text-success { color: var(--success-color); }
+.text-error { color: var(--error-color); }
+.text-warning { color: var(--warning-color); }
+.text-info { color: var(--info-color); }
+
+.hidden { display: none; }
+.visible { display: block; }
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: var(--text-primary);
+  color: var(--card-color);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.8rem;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--text-primary) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}

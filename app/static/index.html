@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga Recommender | Find Your Next Favorite Manga</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-book-open fa-2x"></i>
+                    <h1>Manga Recommender</h1>
+                </div>
+                <p>Discover your next favorite manga based on your interests</p>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Search Section -->
+        <section class="search-section animate-on-scroll">
+            <form id="search-form">
+                <div class="search-container">
+                    <div class="search-input">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="manga-title" placeholder="Enter manga title (e.g., Naruto, One Piece, Bleach)" required>
+                    </div>
+                    <button type="submit" class="search-button">
+                        <i class="fas fa-search"></i>
+                        Get Recommendations
+                    </button>
+                </div>
+            </form>
+            <div class="text-center mt-2">
+                <button onclick="getRandomRecommendations()" class="tooltip">
+                    <i class="fas fa-random"></i> Try a random manga
+                    <span class="tooltiptext">Get recommendations for a popular manga</span>
+                </button>
+            </div>
+        </section>
+        
+        <!-- Loading Indicator -->
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <p>Finding the perfect manga recommendations for you...</p>
+        </div>
+        
+        <!-- Error Message -->
+        <div class="error-message" id="error-message"></div>
+        
+        <!-- No Results -->
+        <div class="no-results" id="no-results">
+            <i class="fas fa-search"></i>
+            <h3>No manga found</h3>
+            <p>Try a different title or check your spelling</p>
+        </div>
+        
+        <!-- Recommendations Section -->
+        <section class="recommendations-section">
+            <h2 class="recommendations-title" id="results-title" style="display: none;">Recommendations</h2>
+            <div class="recommendations" id="recommendations"></div>
+        </section>
+        
+        <!-- Update Database Section -->
+        <section class="update-section animate-on-scroll">
+            <h2>Update Manga Database</h2>
+            <p>Fetch the latest manga data from the API to ensure you get the most up-to-date recommendations. This process may take a few minutes.</p>
+            <button class="update-button" onclick="fetchData(10)">
+                <i class="fas fa-sync-alt"></i> Update Database
+            </button>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2><i class="fas fa-book-open"></i> Manga Recommender</h2>
+                    <p>Find your next favorite manga with our advanced recommendation system powered by machine learning.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="/docs" target="_blank"><i class="fas fa-code"></i> API Documentation</a></li>
+                        <li><a href="https://github.com/yourusername/manga-recommender" target="_blank"><i class="fab fa-github"></i> GitHub Repository</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="https://myanimelist.net/" target="_blank"><i class="fas fa-external-link-alt"></i> MyAnimeList</a></li>
+                        <li><a href="https://jikan.moe/" target="_blank"><i class="fas fa-database"></i> Jikan API</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Manga Recommender. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Manga Details Modal -->
+    <div id="manga-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()"><i class="fas fa-times"></i></span>
+            <div class="modal-header">
+                <div class="modal-image">
+                    <img id="modal-image" src="" alt="Manga Cover">
+                </div>
+                <div class="modal-title-section">
+                    <h2 id="modal-title"></h2>
+                    <div id="modal-score" class="modal-score"></div>
+                </div>
+            </div>
+            <div class="modal-details">
+                <h3>Genres</h3>
+                <div id="modal-genres" class="modal-genres"></div>
+                
+                <h3>Themes</h3>
+                <div id="modal-themes" class="modal-themes"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- No Image Placeholder -->
+    <div style="display: none;">
+        <img id="no-image" src="/static/images/no-image.jpg" alt="No Image Available">
+    </div>
+    
+    <!-- Custom JavaScript -->
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
